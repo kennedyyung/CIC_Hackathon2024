@@ -24,6 +24,8 @@ export default function SurveyPage({route}) {
         handleSaveAndContinue();
         goHomePage();
     }
+
+    const navigation = useNavigation();
   
     const dietaryPreference = [
         {key:'1', value:'Vegetarian'},
