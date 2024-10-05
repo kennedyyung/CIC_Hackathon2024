@@ -2,33 +2,41 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import axios from "axios";
+import { useState } from "react";
+import {useEffect } from "react"
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LoginPage from "./pages/LoginPage";
+import SurveyPage from "./pages/SurveyPage";
 
-export default function App() {
-  const [data, setData] = useState("");
+const Stack = createNativeStackNavigator();
 
-  useEffect(() => {
-    axios
-      .get("http://127.0.0.1:5000/api/data")
-      .then((response) => {
-        setData(response.data.message);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
 
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  export default function App() {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Login"
+            >
+                <Stack.Screen 
+                name="Login" 
+                component={LoginPage}
+                options={{ headerShown: false }} 
+                />
+                <Stack.Screen 
+                name="Survey" 
+                component={SurveyPage}
+                options={{ headerShown: false }} 
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#dff5d7",
     alignItems: "center",
     justifyContent: "center",
   },
