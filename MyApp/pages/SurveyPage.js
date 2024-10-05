@@ -5,7 +5,7 @@ import { SvgXml } from 'react-native-svg';
 import { Picker } from '@react-native-picker/picker';
 import { SelectList } from 'react-native-dropdown-select-list'
 import axios from "axios";
-mport { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function SurveyPage({route}) {
     const { name } = route.params;
