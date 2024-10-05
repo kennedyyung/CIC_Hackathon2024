@@ -6,14 +6,13 @@ import { Picker } from '@react-native-picker/picker';
 import { SelectList } from 'react-native-dropdown-select-list'
 
 export default function SurveyPage() {
-    const [selected, setSelected] = React.useState("");
-    const [name, setName] = useState('');
+    const [age, setAge] = useState('');
 
-    const [selectedGoal, setSelectedGoal] = useState("");
-    const [selectedDiet, setSelectedDiet] = useState("");
-    const [selectedAllergies, setSelectedAllergies] = useState("");
-    const [selectedActivity, setSelectedActivity] = useState("");
-    const [selectedImpact, setSelectedImpact] = useState("");
+    const [needs, setSelectedGoal] = useState("");
+    const [restrictions, setSelectedDiet] = useState("");
+    const [allergies, setSelectedAllergies] = useState("");
+    const [activity, setSelectedActivity] = useState("");
+    const [environmental, setSelectedImpact] = useState("");
   
     const dietaryPreference = [
         {key:'1', value:'Vegetarian'},
@@ -25,7 +24,7 @@ export default function SurveyPage() {
         {key:'7', value:'High Protein'},
     ]
 
-    const allergies = [
+    const allergiesList = [
         {key:'1', value:'Nuts'},
         {key:'2', value:'Peanuts'},
         {key:'3', value:'Shellfish'},
@@ -98,7 +97,7 @@ return (
         <Text style={styles.label}>Allergies</Text>
         <SelectList 
         setSelected={setSelectedAllergies} 
-        data={allergies} 
+        data={allergiesList} 
         save="value"
         /> 
       </View>
@@ -151,7 +150,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   subText: {
-    color: '#0e1b0e',
+    color: '#0000000',
     fontSize: 16,
     paddingBottom: 8,
   },
@@ -176,7 +175,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 56,
     paddingHorizontal: 15,
-    color: '#0e1b0e',
+    color: '#000000',
   },
   checkIcon: {
     backgroundColor: '#f8fcf8',
@@ -225,7 +224,7 @@ const styles = StyleSheet.create({
 
     height: 50,
     paddingHorizontal: 15,
-    color: '#f8fcf8',
+    color: '#000000',
     borderRadius: 14,
     borderColor: '#000000',
     borderWidth: 1 ,
