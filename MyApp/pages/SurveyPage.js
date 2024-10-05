@@ -4,15 +4,22 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'reac
 import { SvgXml } from 'react-native-svg';
 import { Picker } from '@react-native-picker/picker';
 import { SelectList } from 'react-native-dropdown-select-list'
+import { useNavigation } from '@react-navigation/native';
 
 export default function SurveyPage() {
+    const navigation = useNavigation();
+
+    const goHomePage = () => {
+        navigation.navigate("Home"); // Passing name to Survey page
+    };
+
     const [age, setAge] = useState('');
 
     const [needs, setSelectedGoal] = useState("");
     const [restrictions, setSelectedDiet] = useState("");
     const [allergies, setSelectedAllergies] = useState("");
     const [activity, setSelectedActivity] = useState("");
-    const [environmental, setSelectedImpact] = useState("");
+    const [environment, setSelectedImpact] = useState("");
   
     const dietaryPreference = [
         {key:'1', value:'Vegetarian'},
@@ -25,10 +32,11 @@ export default function SurveyPage() {
     ]
 
     const allergiesList = [
-        {key:'1', value:'Nuts'},
+        {key:'1', value:'None'},
         {key:'2', value:'Peanuts'},
         {key:'3', value:'Shellfish'},
-        {key:'4', value:'Treenuts'},
+        {key:'4', value:'All nuts'},
+        {key:'5', value:'Treenuts'},
     ]
 
     const goals = [
@@ -69,8 +77,8 @@ return (
                     placeholder="Enter your age"
                     style={styles.inputField}
                     placeholderTextColor="#000"
-                    value={name}
-                    onChangeText={setName}
+                    value={age}
+                    onChangeText={setAge}
                 />
         </View>
 
@@ -122,7 +130,7 @@ return (
 
 
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}onPress={goHomePage}>
         <Text style={styles.buttonText}>Save and Continue</Text>
       </TouchableOpacity>
 
