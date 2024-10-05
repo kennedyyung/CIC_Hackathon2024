@@ -8,7 +8,7 @@ CORS(app)
 
 # Initialize the DynamoDB resource
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('YourTableName')  # Replace with your DynamoDB table name
+table = dynamodb.Table('Survey_Results')  # Replace with your DynamoDB table name
 
 # name, age, needs, restrictions, activity level, budget
 
@@ -23,19 +23,52 @@ def get_data():
 @app.route('/add-item', methods=['POST'])
 def add_item():
     data = request.json  # Get JSON data from the request
-    item = {
-        'id': data['id'],  # Assuming you're sending an 'id' key
-        'name': data['name'],  # Assuming you're sending a 'name' key
-        # Add other attributes as necessary
-    }
     
+    # Validate required keys
+    required_keys = ['name', 'age', 'needs', 'restrictions', 'activity level', 'budget']
+    if not all(k in data for k in required_keys):
+        return jsonify({"error": "Invalid data, missing fields: " + ", ".join(set(required_keys) - data.keys())}), 400
+    
+    # Create the item to be added to DynamoDB
+    item = {
+        'name': data['name'],
+        'age': data['age'],
+        'needs': data['needs'],
+        'restrictions': data['restrictions'],
+        'activity level': data['activity level'],
+        'budget': data['budget']
+    }
+
     # Put the item in the DynamoDB table
     try:
         table.put_item(Item=item)
         return jsonify({'message': 'Item added successfully'}), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+    
+@app.route('/get-item', methods=['GET'])
+def get_item():
+    name = request.args.get('name') 
+    print(f"Received request for name: {name}")
+
+    if not name:
+        return jsonify({'error': 'Name parameter is required'}), 400
+
+    try:
+        # Query the table using the name as the primary key
+        response = table.query(
+            KeyConditionExpression=boto3.dynamodb.conditions.Key('name').eq(name)
+        )
+
+        # Return the items found for the given name
+        if 'Items' in response:
+            return jsonify({'items': response['Items']}), 200
+        else:
+            return jsonify({'message': 'No items found for the given name'}), 404
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
-
