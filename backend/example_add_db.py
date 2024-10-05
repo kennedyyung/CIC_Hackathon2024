@@ -2,10 +2,7 @@ import boto3
 
 # Initialize a session using your AWS credentials
 session = boto3.Session(
-    aws_access_key_id='',
-    aws_secret_access_key='',
-    aws_session_token='',
-    region_name='us-west-2'  # e.g., 'us-west-2'
+    
 )
 
 # Creeate DynamoDB resource
