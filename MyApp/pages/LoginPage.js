@@ -3,13 +3,15 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'reac
 import { SvgXml } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 import SurveyPage from './SurveyPage';
+import { useState} from 'react';
 
 export default function LoginPage() {
+    const [name, setName] = useState('');
 
     const navigation = useNavigation();
     const handleLogin = () => {
-        navigation.navigate("Survey"); // Replace 'NextPage' with the name of your next screen
-      };
+        navigation.navigate("Survey", { name }); // Passing name to Survey page
+    };
 
     const icon = `
     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
@@ -30,6 +32,8 @@ export default function LoginPage() {
           placeholder="Name"
           style={styles.input}
           placeholderTextColor="#4e974e"
+          value={name} // Binding state to TextInput
+          onChangeText={setName}
         />
       </View>
       <View style={styles.inputContainer}>

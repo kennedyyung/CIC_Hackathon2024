@@ -7,7 +7,9 @@ import { SelectList } from 'react-native-dropdown-select-list'
 
 export default function SurveyPage() {
     return(
-        <view></view>
+        <View>
+            
+        </View>
 
         );
     };
