@@ -1,4 +1,4 @@
-#!/Users/sahibrao/Desktop/Projects/CIC_Hackathon2024/backend/venv/bin/python3.12
+#!/Users/kennedyyung/Desktop/Hackathons/CIC_Hackathon2024/backend/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
