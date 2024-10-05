@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import {
+  Alert,
   View,
   Text,
   TextInput,
@@ -11,8 +12,10 @@ import {
 import { SvgXml } from "react-native-svg";
 import { Picker } from "@react-native-picker/picker";
 import { SelectList } from "react-native-dropdown-select-list";
+import axios from "axios";
 
-export default function SurveyPage() {
+export default function SurveyPage({ route }) {
+  const { name } = route.params;
   const [age, setAge] = useState("");
 
   const [needs, setSelectedGoal] = useState("");
@@ -61,13 +64,20 @@ export default function SurveyPage() {
       name,
       age,
       needs,
-      restrictions,
-      activity_level: activityLevel,
-      budget,
+      allergies,
+      activity,
+      environmental,
     };
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/add-item", data);
+      const response = await fetch("http://127.0.0.1:5000/add-item", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
       if (response.status === 201) {
         Alert.alert("Success", "Item added successfully!");
       } else {
@@ -94,8 +104,8 @@ export default function SurveyPage() {
           placeholder="Enter your age"
           style={styles.inputField}
           placeholderTextColor="#000"
-          value={name}
-          onChangeText={setName}
+          value={age}
+          onChangeText={setAge}
         />
       </View>
 
