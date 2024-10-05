@@ -2,9 +2,9 @@ import boto3
 
 # Initialize a session using your AWS credentials
 session = boto3.Session(
-    aws_access_key_id='ASIASFDVSUKJUT2QKEEN',
-    aws_secret_access_key='PjFHsHnl3gv/tfW7CdmkPixdK5ZbO5yVvHloqLZh',
-    aws_session_token='IQoJb3JpZ2luX2VjEKz//////////wEaCXVzLWVhc3QtMSJHMEUCIAUwUUy+Hh2g9vpwavOwgERfn5z58aaXBdBa7WFNdB3DAiEAkLTCAAsjzw6mv9fV77tlVD/hsdU+eCnAUAqRgT1m9gwqogII9f//////////ARACGgwxNDg0MjI5NTk3NjMiDKh8ADcL06PbeBx4oSr2AUStRJfxbdApKCJ/ewDPKqHdBZF6GQu1Hlb5TOmIIvtlUDV2j+/lXYer8KX8tIsRkM8xrs9vZgrnSywmmmSHzjz2b0fC2W2MFNA5+Sei2EAmVjrgW8ebceyvpY9pf0CcjmWD3iCeXs1OtDSHovETPegw1zFmPYbLOYrk3DKFnMyHO6ML+GNNbd7VT4/alroMHDQzdG/+p1xh0sVd4OeW0+oAIjIBylvhXL4hiBgcvkW8XDCEO43K/oBWEOpOYdqCxdy1huQZRoXuzbn0h71YJHz0njkJ26AN4y8TamygtTNI4H7rt9SP575V04Du1sy+ioBHafVTtDDyo4a4BjqdAdbnVOxzkUsIXrKBMhCxvUmrqbyvKOu5SalDDTpCGPeLdaCYWyvcWetgLThMUu/DftOcpvIRUcduE7C/IUoVwZ9HcjKfQLUvweVvjah2x/MfwaYBymG4/2dow70bz0rZ4MwNTwTqaKbxw9ZQe06uLf+xl8UnlsPx0+YVjtMvCJ8iKrHOwcNEnAEM+YmiWTipnznMp9U+xXUJ0jjj+Gg=',
+    aws_access_key_id='',
+    aws_secret_access_key='',
+    aws_session_token='',
     region_name='us-west-2'  # e.g., 'us-west-2'
 )
 
