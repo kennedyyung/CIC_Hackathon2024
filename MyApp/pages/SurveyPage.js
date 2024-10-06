@@ -1,11 +1,19 @@
-import React from 'react';
-import { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { SvgXml } from 'react-native-svg';
-import { Picker } from '@react-native-picker/picker';
-import { SelectList } from 'react-native-dropdown-select-list'
+import React from "react";
+import { useState } from "react";
+import {
+  Alert,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+} from "react-native";
+import { SvgXml } from "react-native-svg";
+import { Picker } from "@react-native-picker/picker";
+import { SelectList } from "react-native-dropdown-select-list";
 import axios from "axios";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 export default function SurveyPage({route}) {
     const { name } = route.params;
@@ -14,36 +22,38 @@ export default function SurveyPage({route}) {
         navigation.navigate("BottomNav"); // Passing name to Survey page
     };
 
-    const [needs, setSelectedGoal] = useState("");
-    const [restrictions, setSelectedDiet] = useState("");
-    const [allergies, setSelectedAllergies] = useState("");
-    const [activity, setSelectedActivity] = useState("");
-    const [environmental, setSelectedImpact] = useState("");
+  const [needs, setSelectedGoal] = useState("");
+  const [restrictions, setSelectedDiet] = useState("");
+  const [allergies, setSelectedAllergies] = useState("");
+  const [activity, setSelectedActivity] = useState("");
+  const [environmental, setSelectedImpact] = useState("");
 
-    const handleButtonDouble = () => {
-        handleSaveAndContinue();
-        goHomePage();
-    }
+  const budget = "0";
 
-    const navigation = useNavigation();
-  
-    const restrictionsList = [
-        {key:'1', value:'Vegetarian'},
-        {key:'2', value:'Vegan'},
-        {key:'3', value:'Gluten Free'},
-        {key:'4', value:'Halal'},
-        {key:'5', value:'Dairy Free'},
-        {key:'6', value:'Pescetarian'},
-        {key:'7', value:'High Protein'},
-    ]
+  const handleButtonDouble = () => {
+    handleSaveAndContinue();
+    goHomePage();
+  };
 
-    const allergiesList = [
-        {key:'1', value:'None'},
-        {key:'2', value:'Nuts'},
-        {key:'3', value:'Peanuts'},
-        {key:'4', value:'Shellfish'},
-        {key:'5', value:'Treenuts'},
-    ]
+  const navigation = useNavigation();
+
+  const restrictionsList = [
+    { key: "1", value: "Vegetarian" },
+    { key: "2", value: "Vegan" },
+    { key: "3", value: "Gluten Free" },
+    { key: "4", value: "Halal" },
+    { key: "5", value: "Dairy Free" },
+    { key: "6", value: "Pescetarian" },
+    { key: "7", value: "High Protein" },
+  ];
+
+  const allergiesList = [
+    { key: "1", value: "None" },
+    { key: "2", value: "Nuts" },
+    { key: "3", value: "Peanuts" },
+    { key: "4", value: "Shellfish" },
+    { key: "5", value: "Treenuts" },
+  ];
 
   const goals = [
     { key: "1", value: "None" },
@@ -71,11 +81,11 @@ export default function SurveyPage({route}) {
       allergies,
       activity,
       environmental,
-      restrictions
+      restrictions,
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/add-item", {
+      const response = await fetch("http://34.216.207.88:5000/add-item", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -104,15 +114,15 @@ export default function SurveyPage({route}) {
       </Text>
 
       <View style={styles.inputContainer}>
-                <Text style={styles.label}>Age</Text>
-                <TextInput
-                    placeholder="Enter your age"
-                    style={styles.inputField}
-                    placeholderTextColor="#000"
-                    value={age}
-                    onChangeText={setAge}
-                />
-        </View>
+        <Text style={styles.label}>Age</Text>
+        <TextInput
+          placeholder="Enter your age"
+          style={styles.inputField}
+          placeholderTextColor="#000"
+          value={age}
+          onChangeText={setAge}
+        />
+      </View>
 
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Health Goals</Text>
@@ -155,9 +165,7 @@ export default function SurveyPage({route}) {
         />
       </View>
 
-
-
-      <TouchableOpacity style={styles.button}onPress={handleButtonDouble}>
+      <TouchableOpacity style={styles.button} onPress={handleButtonDouble}>
         <Text style={styles.buttonText}>Save and Continue</Text>
       </TouchableOpacity>
 
