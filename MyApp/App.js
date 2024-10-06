@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import SurveyPage from "./pages/SurveyPage";
 import HomePage from "./pages/HomePage";
 import BottomNav from "./Components/BottomNav";
+import TrackingPage from "./pages/TrackingPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,11 @@ const Stack = createNativeStackNavigator();
                 <Stack.Screen 
                 name="Home" 
                 component={HomePage}
+                options={{ headerShown: false }} 
+                />
+                <Stack.Screen 
+                name="Tracking" 
+                component={TrackingPage}
                 options={{ headerShown: false }} 
                 />
                 <Stack.Screen name="BottomNav" component={BottomNav} options={{ headerShown: false }} />

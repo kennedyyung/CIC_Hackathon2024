@@ -11,7 +11,7 @@ export default function SurveyPage({route}) {
     const { name } = route.params;
     const [age, setAge] = useState('');
     const goHomePage = () => {
-        navigation.navigate("Home"); // Passing name to Survey page
+        navigation.navigate("BottomNav"); // Passing name to Survey page
     };
 
     const [needs, setSelectedGoal] = useState("");

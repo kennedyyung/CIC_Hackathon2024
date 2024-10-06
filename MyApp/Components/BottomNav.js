@@ -3,8 +3,11 @@ import { Image } from 'react-native'
 import LoginPage from '../pages/LoginPage';
 import HomePage from '../pages/HomePage';
 import { SvgXml } from 'react-native-svg';
+import SurveyPage from '../pages/SurveyPage';
+
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import TrackingPage from '../pages/TrackingPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,10 +32,12 @@ const PersonIcon = () => {
 const BottomNav = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Activities"
-      barStyle={{ backgroundColor: 'black' }}
+      initialRouteName="Home"
+      barStyle={{ backgroundColor: '#d0e7d0' }}
     >
-      <Tab.Screen name='Login' component={LoginPage} options={{ tabBarIcon: PersonIcon }} />
+      <Tab.Screen name='Login' component={LoginPage}  />
+      <Tab.Screen name='Home' component={HomePage}  />
+      <Tab.Screen name='Tracking' component={TrackingPage}  />
     </Tab.Navigator>
   );
 
