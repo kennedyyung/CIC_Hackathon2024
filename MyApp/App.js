@@ -8,6 +8,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginPage from "./pages/LoginPage";
 import SurveyPage from "./pages/SurveyPage";
+import HomePage from "./pages/HomePage";
+import BottomNav from "./Components/BottomNav";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +29,12 @@ const Stack = createNativeStackNavigator();
                 component={SurveyPage}
                 options={{ headerShown: false }} 
                 />
+                <Stack.Screen 
+                name="Home" 
+                component={HomePage}
+                options={{ headerShown: false }} 
+                />
+                <Stack.Screen name="BottomNav" component={BottomNav} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );

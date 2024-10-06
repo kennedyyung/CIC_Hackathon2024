@@ -26,7 +26,7 @@ def add_item():
     data = request.json  # Get JSON data from the request
     
     # Validate required keys
-    required_keys = ['name', 'age', 'needs', 'restrictions', 'activity level', 'budget']
+    required_keys = ['name', 'age', 'needs', 'restrictions', 'allergies', 'activity', 'environmental']
     if not all(k in data for k in required_keys):
         return jsonify({"error": "Invalid data, missing fields: " + ", ".join(set(required_keys) - data.keys())}), 400
     
@@ -36,8 +36,9 @@ def add_item():
         'age': data['age'],
         'needs': data['needs'],
         'restrictions': data['restrictions'],
-        'activity level': data['activity level'],
-        'budget': data['budget']
+        'allergies': data['allergies'],
+        'activity': data['activity'],
+        'environmental': data['environmental']
     }
 
     # Put the item in the DynamoDB table
