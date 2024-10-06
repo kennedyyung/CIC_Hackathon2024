@@ -76,117 +76,84 @@
 //           }
 //     });
 
-
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Modal, Alert, Pressable } from 'react-native';
+import React from 'react';
+import { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
+import { SvgXml } from 'react-native-svg';
+import { Picker } from '@react-native-picker/picker';
+import { SelectList } from 'react-native-dropdown-select-list'
 import RecipeCard from '../Components/RecipeCard';
 import sampleImage from '../img/spaghetti.jpg';
+import { Button } from 'react-native';
+import axios from 'axios';
 
 export default function HomePage() {
-    const [modalVisible, setModalVisible] = useState(false); // Modal state
+    const [query, setQuery] = useState('');
+    const [recipes, setRecipes] = useState([]);
+    const [error, setError] = useState('');
+
+    const getRecipes = async () => {
+        try {
+            const response = await axios.post('http://34.216.207.88:5000/get_recipes', { query });
+
+            setRecipes(response.data.recipes); // Set the recipes state with the response
+            setError(''); // Clear any previous errors
+        } catch (error) {
+            console.error(error);
+            setError(error.response?.data.error || 'Something went wrong'); // Set error message
+        }
+    };
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View>
-                <Text style={styles.title}>Search Recipes</Text>
                 <TextInput
-                    placeholder="Type here"
+                    placeholder="Enter your recipe query"
+                    value={query}
+                    onChangeText={setQuery}
                     style={styles.inputField}
                     placeholderTextColor="#000"
                 />
+                <Button title="Get Recipes" onPress={getRecipes} />
             </View>
-            
+            {error ? <Text style={{ color: 'red' }}>{error}</Text> : null}
+            {recipes.length > 0 && (
+                <View style={{ marginTop: 20 }}>
+                    <Text>{recipes}</Text>
+                    {/* {recipes.map((recipe, index) => (
+                        <Text key={index}>{recipe}</Text>
+                    ))} */}
+                </View>
+            )}
             <RecipeCard
                 time="25 minutes"
-                image={sampleImage}
+                image={sampleImage}// Example image URL
                 title="Quinoa Burgers"
                 calorieCount="250"
                 description="A quick and easy pasta recipe."
-                onPress={() => setModalVisible(true)} // Pass the function to show the modal
             />
             <RecipeCard
                 time="25 minutes"
-                image={sampleImage}
+                image={sampleImage}// Example image URL
                 title="Delicious Pasta"
                 calorieCount="250"
                 description="A quick and easy pasta recipe."
-                onPress={() => setModalVisible(true)} // Pass the function to show the modal
             />
             <RecipeCard
                 time="25 minutes"
-                image={sampleImage}
+                image={sampleImage}// Example image URL
                 title="Delicious Pasta"
                 calorieCount="250"
                 description="A quick and easy pasta recipe."
-                onPress={() => setModalVisible(true)} // Pass the function to show the modal
             />
+        </ScrollView>
 
-            {/* Modal component */}
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert('Modal has been closed.');
-                    setModalVisible(!modalVisible);
-                }}>
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Hello World!</Text>
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}>
-                            <Text style={styles.textStyle}>Hide Modal</Text>
-                        </Pressable>
-                    </View>
-                </View>
-            </Modal>
-        </View>
     );
 };
 
 const styles = StyleSheet.create({
-    // ... existing styles
-    centeredView: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 22,
-    },
-    modalView: {
-        margin: 20,
-        backgroundColor: 'white',
-        borderRadius: 20,
-        padding: 35,
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5,
-    },
-    button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
-    },
-    buttonOpen: {
-        backgroundColor: '#F194FF',
-    },
-    buttonClose: {
-        backgroundColor: '#2196F3',
-    },
-    textStyle: {
-        color: 'white',
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    modalText: {
-        marginBottom: 15,
-        textAlign: 'center',
+    container: {
+        marginTop: 56,
     },
     input: {
         flex: 1,
@@ -197,8 +164,8 @@ const styles = StyleSheet.create({
         color: "#0e1b0e",
         fontSize: 16,
         borderColor: "transparent",
-      },
-      inputField: {
+    },
+    inputField: {
         height: 35,
         paddingHorizontal: 15,
         color: "#000000",
@@ -206,12 +173,11 @@ const styles = StyleSheet.create({
         borderColor: "#000000",
         borderWidth: 1,
         marginHorizontal: 10,
-        marginBottom:15,
-      },
-      title: {
+        marginBottom: 15,
+    },
+    title: {
         fontWeight: 'bold',
-        fontSize:16,
-        marginLeft: 10,
-        marginTop:45
-      },
+        fontSize: 16,
+        marginLeft: 10
+    }
 });
