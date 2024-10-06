@@ -4,9 +4,10 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'reac
 import { SvgXml } from 'react-native-svg';
 import { Picker } from '@react-native-picker/picker';
 import { SelectList } from 'react-native-dropdown-select-list'
-import RecipeCard from '../Components/RecipeCard'
+import RecipeCard from '../Components/RecipeCard';
+import sampleImage from '../img/spaghetti.jpg';
 
-export default function SurveyPage() {
+export default function HomePage() {
     return(
         <View style={styles.container}>
             <View>
@@ -14,14 +15,24 @@ export default function SurveyPage() {
             </View>
              <RecipeCard
                 time="25 minutes"
-                imageSource="require('../img/spaghetti.jpg')"// Example image URL
+                image={sampleImage}// Example image URL
+                title="Quinoa Burgers"
+                calorieCount="250"
+                description="A quick and easy pasta recipe."
+            />
+                         <RecipeCard
+                time="25 minutes"
+                image={sampleImage}// Example image URL
                 title="Delicious Pasta"
-                difficulty="Easy"
-                calorieCount="Super "
-                distance={0.5} // Distance in km
-                elevation={10} // Elevation in meters
-                sideText="A quick and easy pasta recipe."
-                color="#f8f8f8" // Background color for the card
+                calorieCount="250"
+                description="A quick and easy pasta recipe."
+            />
+                         <RecipeCard
+                time="25 minutes"
+                image={sampleImage}// Example image URL
+                title="Delicious Pasta"
+                calorieCount="250"
+                description="A quick and easy pasta recipe."
             />
         </View>
 

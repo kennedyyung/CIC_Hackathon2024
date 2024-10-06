@@ -27,7 +27,7 @@ export default function SurveyPage({route}) {
 
     const navigation = useNavigation();
   
-    const dietaryPreference = [
+    const restrictionsList = [
         {key:'1', value:'Vegetarian'},
         {key:'2', value:'Vegan'},
         {key:'3', value:'Gluten Free'},
@@ -71,6 +71,7 @@ export default function SurveyPage({route}) {
       allergies,
       activity,
       environmental,
+      restrictions
     };
 
     try {
@@ -122,7 +123,7 @@ export default function SurveyPage({route}) {
         <Text style={styles.label}>Dietary Preference</Text>
         <SelectList
           setSelected={setSelectedDiet}
-          data={restrictions}
+          data={restrictionsList}
           save="value"
         />
       </View>

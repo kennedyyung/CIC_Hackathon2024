@@ -2,29 +2,32 @@ import React from 'react'
 import { Text, View, StyleSheet, Image, TouchableOpacity, Button, imageSource } from 'react-native';
 
 const RecipeCard = (props) => {
-    const { image, title, style, elevation, distance, time, sideText, difficulty, calorieCount } = props;
+    const { image, title, style, time, description, calorieCount } = props;
     return (
         <View style={{ backgroundColor: props.color, ...style }}>
             <View style={styles.cardContent}>
+                <View style={styles.rowContainer}>
+                    <View>
                 <Text style={styles.sideText}>{time}</Text>
 
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.sideText}>Serves: {calorieCount} calories</Text>
                 <View style={styles.rowContainer}>
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>{difficulty}</Text>
+                        <Text style={styles.buttonText}>Cook now</Text>
                     </TouchableOpacity>
 
-                        <Text style={styles.smallText}>{distance} km</Text>
-                        <Text style={styles.smallText}>{elevation} m</Text>
 
                 </View>
+                <Text style={styles.sub}>{description}</Text>
+                </View>
                 <Image 
-                    source={imageSource} // Use the image prop directly
+                    source={image} // Use the image prop directly
                     style={styles.image} // Add styling for the image if needed
                 />
+                                
+                </View>
 
-                <Text style={styles.sub}>{sideText}</Text>
 
             </View>
         </View>
@@ -35,14 +38,14 @@ const styles = StyleSheet.create({
         width: 100, // Set your desired width
         height: 100, // Set your desired height
         borderRadius: 10, // Optional: add border radius for aesthetics
-        marginVertical: 10, // Optional: add margin for spacing
+        marginRight: 15
     },
     cardContent: {
         flexDirection: 'column',
         paddingLeft: 15,
-        height: 80,
         width: "100%",
-        paddingBottom: 10
+        paddingBottom: 10,
+        marginBottom:20
     },
     smallText: {
         paddingHorizontal: 15
@@ -74,7 +77,7 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        backgroundColor: 'black',
+        backgroundColor: '#d0e7d0',
         justifyContent: 'center',
         // width: 45,
         height: 25,
