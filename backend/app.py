@@ -85,10 +85,4 @@ def get_recipes():
     return jsonify({"recipes": recipes}), 200
 
 if __name__ == '__main__':
-<<<<<<< HEAD
     app.run(debug=True)
-    
-
-=======
-    app.run(debug=True)
->>>>>>> Sib
