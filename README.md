@@ -1,1 +1,2 @@
-CIC Hackathon!
+## EcoChef ##
+EcoChef is a mobile app developed with React Native for the frontend and Python Flask for the backend. The app leverages AWS Bedrock and DynamoDB to analyze the user's nutritional preferences and generate customized recipe options. Additionally, it provides insights into the carbon emissions and water consumption savings based on the chosen meals. EcoChef is designed to contribute to the United Nations Sustainable Development Goal (SDG) #12: Responsible Consumption and Production.
